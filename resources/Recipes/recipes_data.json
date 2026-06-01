@@ -1,0 +1,7 @@
+{
+  "recipes": [
+    { "id": "recipe_flour", "name": "磨面粉", "result": "product_flour", "count": 1, "ingredients": [{"item": "product_wheat", "count": 2}], "bench": "Workshop", "level": 0 },
+    { "id": "recipe_rice_cooked", "name": "煮米饭", "result": "product_rice_cooked", "count": 1, "ingredients": [{"item": "product_rice", "count": 1}], "bench": "Kitchen", "level": 0 },
+    { "id": "recipe_jam", "name": "做果酱", "result": "product_jam", "count": 1, "ingredients": [{"item": "product_tomato", "count": 3}], "bench": "Kitchen", "level": 0 }
+  ]
+}

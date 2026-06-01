@@ -1,0 +1,428 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="国风像素农场物语"
+run/main_scene="res://scenes/UI/MainMenu.tscn"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="demo"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+
+[autoload]
+
+EventBus="*res://scripts/Core/EventBus.cs"
+ServiceRegistry="*res://scripts/Core/ServiceRegistry.cs"
+GameManager="*res://scripts/Core/GameManager.cs"
+
+; Input Map actions required by PlayerController.cs
+; These can also be edited via Project > Project Settings > Input Map in the Godot editor.
+; Default bindings:
+;   move_left / move_right / move_up / move_down  -> WASD or arrow keys
+;   use_tool                                       -> Left mouse button or Space
+;   interact                                       -> E or Enter
+;   hotbar_1 through hotbar_8                      -> Keys 1-8
+[input]
+
+move_left={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 65,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194319,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+move_right={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 68,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194321,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+move_up={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 87,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194320,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+move_down={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 83,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194322,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+use_tool={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 32,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 1,
+"resource_local_to_scene": false,
+"resource_name": "",
+"button_index": 1,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false,
+"double_click": false,
+"factor": 1.0
+}]
+}
+
+interact={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 69,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194306,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_1={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 49,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_2={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 50,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_3={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 51,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_4={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 52,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_5={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 53,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_6={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 54,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_7={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 55,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+hotbar_8={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 56,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}
+
+toggle_inventory={
+"deadzone": 0.5,
+"events": [{
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 4194305,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}, {
+"type": 0,
+"resource_local_to_scene": false,
+"resource_name": "",
+"keycode": 73,
+"physical_keycode": 0,
+"key_label": 0,
+"unicode": 0,
+"modifier_keycode": 0,
+"ctrl_pressed": false,
+"shift_pressed": false,
+"alt_pressed": false,
+"meta_pressed": false,
+"pressed": false
+}]
+}

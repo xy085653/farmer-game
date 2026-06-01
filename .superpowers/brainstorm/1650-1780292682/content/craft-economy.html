@@ -1,0 +1,105 @@
+<h2>🔨 制作/建造系统 + 💰 经济系统</h2>
+<p class="subtitle">物品合成、建筑升级、商店贸易</p>
+
+<div class="section">
+  <h3>🔨 制作/建造系统</h3>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #1a2a1a; border-radius: 12px; padding: 1rem; border: 1px solid #2d5a27;">
+        <h4>制作分类</h4>
+        <div style="margin-top: 0.5rem;">
+          <div>🔧 <strong>工具升级</strong> — 锄头/水壶/斧头 铜→银→金</div>
+          <div style="margin-top: 4px;">🥘 <strong>农产品加工</strong> — 稻谷→米, 小麦→面粉, 水果→果酱</div>
+          <div style="margin-top: 4px;">🏠 <strong>建筑建造</strong> — 仓库/畜棚/工坊/厨房</div>
+          <div style="margin-top: 4px;">🎁 <strong>特殊物品</strong> — 节气灯笼/装饰品/礼物</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #1a1a2e; border-radius: 12px; padding: 1rem; border: 1px solid #3a4a8a;">
+        <h4>配方数据结构</h4>
+        <div style="margin-top: 0.5rem; font-family: monospace; font-size: 0.8rem;">
+          <div style="color: #e8c86a;">RecipeData : Resource</div>
+          <div>  ResultItem    // 产出物品</div>
+          <div>  ResultCount   // 产出数量</div>
+          <div>  Ingredients[] // 所需材料 [{itemId, count}]</div>
+          <div>  WorkbenchType // 在哪制作(厨房/工坊/户外)</div>
+          <div>  RequiredLevel // 需要工具等级</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🏠 建筑系统</h3>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px; background: #1a3a2a; border-radius: 10px; padding: 1rem;">
+      <h4 style="color: #7cb342;">初始</h4>
+      <div>🏚️ 小木屋 (家)</div>
+      <div>🌱 3×3 耕地</div>
+    </div>
+    <div style="flex: 1; min-width: 200px; background: #2a3a1a; border-radius: 10px; padding: 1rem;">
+      <h4 style="color: #e8c86a;">中期可建</h4>
+      <div>🏪 仓库 (存粮)</div>
+      <div>🔨 工坊 (制作)</div>
+      <div>🍳 厨房 (烹饪)</div>
+      <div>🌾 扩大耕地</div>
+    </div>
+    <div style="flex: 1; min-width: 200px; background: #1a1a3a; border-radius: 10px; padding: 1rem;">
+      <h4 style="color: #5c9bd5;">后期</h4>
+      <div>🏡 房屋升级</div>
+      <div>💧 自动灌溉</div>
+      <div>🏺 酿酒坊</div>
+      <div>🎋 节气祭坛</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>💰 经济系统</h3>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #2a1a1a; border-radius: 12px; padding: 1rem; border: 1px solid #8a4a2a;">
+        <h4>货币与交易</h4>
+        <div style="margin-top: 0.5rem;">
+          <div>🪙 <strong>铜钱</strong> — 基础货币 (用"文"为单位)</div>
+          <div style="margin-top: 4px;">🏪 <strong>杂货铺</strong> — 种子/工具/日常用品</div>
+          <div style="margin-top: 4px;">📦 <strong>出货箱</strong> — 放在家门口, 农产品自动出售</div>
+          <div style="margin-top: 4px;">📜 <strong>订单板</strong> — 村民发布需求, 额外奖励</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #1a1a2e; border-radius: 12px; padding: 1rem; border: 1px solid #3a4a8a;">
+        <h4>经济循环逻辑</h4>
+        <div style="font-family: monospace; font-size: 0.85rem;">
+          <div style="color: #7cb342;">🌾 种田 → 🧺 收获 + 加工</div>
+          <div style="color: #888;">→ 📦 出货箱 / 🏪 卖商店</div>
+          <div style="color: #888;">→ 🪙 获得铜钱</div>
+          <div style="color: #e8c86a;">→ 买新种子 🔄 买工具升级</div>
+          <div style="color: #888;">→ 生产效率提升 → 更多产出</div>
+          <div style="color: #ff8c42; margin-top: 4px;">💰 节气影响物价: 应季作物价高</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>📨 事件流总览</h3>
+  <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.85rem; line-height: 2;">
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">DayStartedEvent</span>())         → 所有系统推进一天</div>
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">CropGrowthTickEvent</span>())    → 作物生长</div>
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">SolarTermChangedEvent</span>("谷雨")) → 节气特效</div>
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">ItemHarvestedEvent</span>(item, qty)) → 收获/背包更新</div>
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">TransactionEvent</span>(amount))    → 金钱变动</div>
+    <div><span style="color: #e8c86a;">EventBus.Publish</span>(new <span style="color: #66cdaa;">StructurePlacedEvent</span>("工坊")) → 建筑完工</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem; padding: 1rem; background: #1a2a3a; border-radius: 8px; border-left: 4px solid #5c9bd5;">
+  <strong>💡 整体数据流：</strong><br>
+  种田产原料 → 制作系统加工增值 → 出售获利 → 购买升级 → 扩大再生产<br>
+  节气系统影响每个环节：种什么、长多快、卖多少钱
+</div>

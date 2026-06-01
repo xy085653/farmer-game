@@ -1,0 +1,80 @@
+<h2>🗺️ 地图系统 + 🌾 种田系统</h2>
+<p class="subtitle">大世界滚动地图 + 种植玩法</p>
+
+<div class="section">
+  <h3>🗺️ 世界地图设计</h3>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #1a2a1a; border-radius: 12px; padding: 1rem; border: 1px solid #2d5a27;">
+        <h4>地图分区</h4>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+          <div>🏘️ <strong>农场</strong> — 主角农场，可耕地、建造</div>
+          <div style="margin-top: 4px;">🏪 <strong>小镇</strong> — 商店、杂货铺、升级工坊</div>
+          <div style="margin-top: 4px;">🌲 <strong>森林/野外</strong> — 采集资源、偶遇事件</div>
+          <div style="margin-top: 4px;">⛰️ <strong>山地</strong> — 矿产、石材资源</div>
+          <div style="margin-top: 4px;">🏞️ <strong>河边/湖边</strong> — 水资源、季节性景观</div>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 250px;">
+      <div style="background: #1a1a3a; border-radius: 12px; padding: 1rem; border: 1px solid #3a4a8a;">
+        <h4>技术实现</h4>
+        <div style="margin-top: 0.5rem; font-size: 0.85rem; font-family: monospace;">
+          <div style="color: #5c9bd5;">// 大世界 = 多个 TileMapLayer</div>
+          <div>GroundLayer    ← 地形 (草地/耕地/道路)</div>
+          <div>DecorationLayer ← 装饰 (花/草/石头)</div>
+          <div>BuildingLayer  ← 建筑 (房子/篱笆)</div>
+          <div>ObjectLayer    ← 互动对象 (箱子/机器)</div>
+          <div style="color: #888; margin-top: 4px;">// 摄像机跟随玩家, Clamp 到地图边界</div>
+          <div style="color: #888;">// 分区块加载(LOD), 避免一次渲染全图</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🌾 种田系统核心流程</h3>
+  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem; font-family: monospace; line-height: 2;">
+    <div style="color: #7cb342;">① 整地</div>
+    <div>   用锄头在草地 → 变成"已耕"状态 (泥土色 Tile)</div>
+    <div style="color: #7cb342;">② 播种</div>
+    <div>   手持种子 → 点击耕地 → 消耗种子 + 体力</div>
+    <div>   → 泥土上出现小苗 (不同作物不同外观)</div>
+    <div style="color: #7cb342;">③ 浇水 (每日)</div>
+    <div>   用水壶浇灌 → 保持湿润状态(颜色变深)</div>
+    <div>   每个时段不浇水会逐渐变干</div>
+    <div style="color: #7cb342;">④ 生长</div>
+    <div>   每天结束时 → 判断水分+节气 → 推进生长阶段</div>
+    <div>   作物有 4-6 个生长阶段, 受节气影响速度</div>
+    <div style="color: #7cb342;">⑤ 收获</div>
+    <div>   成熟后 → 右键收获 → 产出物品进背包</div>
+    <div>   部分作物可连续收获 (如水稻/茄子)</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🌽 作物数据结构</h3>
+  <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.85rem;">
+    <div style="color: #e8c86a;">// CropData.tres — 作物数据 Resource</div>
+    <div style="color: #5c9bd5;">[GlobalClass]</div>
+    <div style="color: #66cdaa;">public partial class CropData : Resource {</div>
+    <div>  [Export] string CropName;           // "水稻"</div>
+    <div>  [Export] Texture2D[] GrowthStages;  // 5 个生长阶段精灵</div>
+    <div>  [Export] float BaseGrowthDays;      // 基础生长天数</div>
+    <div>  [Export] SolarTerm[] PreferredTerms; // 宜种节气(谷雨等)</div>
+    <div>  [Export] ItemData HarvestItem;      // 收获产物</div>
+    <div>  [Export] bool CanRegrow;            // 是否可连续收获</div>
+    <div>  [Export] int RegrowDays;            // 再生间隔</div>
+    <div>  [Export] Season[] AllowedSeasons;   // 可种植季节</div>
+    <div style="color: #66cdaa;">}</div>
+    <div style="color: #888; margin-top: 4px;">// 耕地 Tile 状态: 普通 → 已耕 → 已耕(湿) → 已种植</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem; padding: 1rem; background: #2a1a1a; border-radius: 8px; border-left: 4px solid #e8c86a;">
+  <strong>🌾 节气联动示例：</strong><br>
+  水稻 → 谷雨时播种, 生长速度 +30%<br>
+  小麦 → 秋分时收获, 产量 +20%<br>
+  霜降后 → 所有未收作物有 50% 概率冻死 → 迫使玩家规划农时
+</div>

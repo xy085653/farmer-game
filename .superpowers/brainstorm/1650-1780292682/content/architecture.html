@@ -1,0 +1,87 @@
+<h2>🏗️ 整体架构设计</h2>
+<p class="subtitle">事件驱动 + 服务层 — Godot 4.6 C#</p>
+
+<div class="section">
+  <h3>核心架构层次</h3>
+  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem; font-family: monospace; line-height: 2;">
+    <div style="color: #e8c86a;">┌──────────────────────────────────────────────────┐</div>
+    <div style="color: #e8c86a;">│  <span style="color: #7cb342;">🎮 表现层 (View/Scene)</span>                          │</div>
+    <div style="color: #e8c86a;">│  Player.gd / CropSprite / UI / TileMap          │</div>
+    <div style="color: #e8c86a;">│  <span style="color: #888;">↓ 发送事件 ↑ 订阅事件</span>                          │</div>
+    <div style="color: #e8c86a;">├──────────────────────────────────────────────────┤</div>
+    <div style="color: #e8c86a;">│  <span style="color: #66cdaa;">🔗 事件总线 (EventBus) — 单例 Autoload</span>          │</div>
+    <div style="color: #e8c86a;">│  C# event Action<T> / 所有系统零耦合通信         │</div>
+    <div style="color: #e8c86a;">│  <span style="color: #888;">↓ 调度 ↑ 监听</span>                                    │</div>
+    <div style="color: #e8c86a;">├──────────────────────────────────────────────────┤</div>
+    <div style="color: #e8c86a;">│  <span style="color: #5c9bd5;">⚙️ 服务层 (Services) — 接口 + 实现</span>              │</div>
+    <div style="color: #e8c86a;">│  ITimeService / IFarmService / IInventoryService  │</div>
+    <div style="color: #e8c86a;">│  IEconomyService / IWorldService / ICraftService  │</div>
+    <div style="color: #e8c86a;">│  <span style="color: #888;">↓ 读写 ↑ 通知</span>                                    │</div>
+    <div style="color: #e8c86a;">├──────────────────────────────────────────────────┤</div>
+    <div style="color: #e8c86a;">│  <span style="color: #ff8c42;">💾 数据层 (Data / Resource)</span>                      │</div>
+    <div style="color: #e8c86a;">│  CropData / SeasonData / ItemData / SaveData     │</div>
+    <div style="color: #e8c86a;">│  Godot Resource (.tres) + JSON 持久化            │</div>
+    <div style="color: #e8c86a;">└──────────────────────────────────────────────────┘</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🎯 服务注册中心 (ServiceRegistry)</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 1rem;">
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⏰</div>
+      <strong>ITimeService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">二十四节气 + 昼夜</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">TimeEvents</div>
+    </div>
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌾</div>
+      <strong>IFarmService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">耕地 + 作物生长</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">FarmEvents</div>
+    </div>
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎒</div>
+      <strong>IInventoryService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">背包 + 物品管理</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">InventoryEvents</div>
+    </div>
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛒</div>
+      <strong>IEconomyService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">金钱 + 商店 + 出货</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">EconomyEvents</div>
+    </div>
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🗺️</div>
+      <strong>IWorldService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">地图区块 + 场景</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">WorldEvents</div>
+    </div>
+    <div style="background: #1a3a1a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27; flex: 1 1 200px;">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔨</div>
+      <strong>ICraftService</strong>
+      <div style="font-size: 0.8rem; color: var(--muted);">合成 + 建筑</div>
+      <div style="font-size: 0.8rem; color: #7cb342;">CraftEvents</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>📨 事件流示例：播种</h3>
+  <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.9rem; line-height: 1.8;">
+    <div style="color: #888;">// 玩家右键种子 → 点击耕地</div>
+    <div style="color: #66cdaa;">① PlayerController</div>
+    <div style="color: #888;">→ </div><span style="color: #e8c86a;">EventBus.Publish(new PlantSeedEvent(seedId, tilePos))</span>
+    <div style="color: #888;">→ IFarmService.HandlePlantSeed</div>
+    <div style="color: #888;">→ 验证耕地、扣除种子</div>
+    <div style="color: #888;">→ </div><span style="color: #e8c86a;">EventBus.Publish(new SeedPlantedEvent(seedId, tilePos))</span>
+    <div style="color: #888;">→ UI 更新背包 / 显示作物 / 播放动画</div>
+    <div style="color: #888;">→ </div><span style="color: #e8c86a;">EventBus.Publish(new InventoryChangedEvent())</span>
+    <div style="color: #888;">→ IEconomyService 完全不知道种田的细节</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem; padding: 1rem; background: #1a2a3a; border-radius: 8px; border-left: 4px solid #5c9bd5;">
+  <strong>💡 这个架构的好处：</strong> 将来加"社交系统"或"钓鱼系统"时，只需要新写一个 ISocialService，注册到 ServiceRegistry，监听/发布事件即可——一行代码都不改现有系统。
+</div>

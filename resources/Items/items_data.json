@@ -1,0 +1,23 @@
+{
+  "seeds": [
+    { "id": "seed_rice", "name": "水稻种子", "type": "Seed", "price": 10, "crop": "crop_rice" },
+    { "id": "seed_wheat", "name": "小麦种子", "type": "Seed", "price": 8, "crop": "crop_wheat" },
+    { "id": "seed_corn", "name": "玉米种子", "type": "Seed", "price": 12, "crop": "crop_corn" },
+    { "id": "seed_tomato", "name": "番茄种子", "type": "Seed", "price": 15, "crop": "crop_tomato" }
+  ],
+  "products": [
+    { "id": "product_rice", "name": "稻谷", "type": "Product", "price": 30 },
+    { "id": "product_wheat", "name": "小麦", "type": "Product", "price": 25 },
+    { "id": "product_corn", "name": "玉米", "type": "Product", "price": 35 },
+    { "id": "product_tomato", "name": "番茄", "type": "Product", "price": 40 },
+    { "id": "product_flour", "name": "面粉", "type": "Crafted", "price": 60 },
+    { "id": "product_rice_cooked", "name": "米饭", "type": "Crafted", "price": 80 },
+    { "id": "product_jam", "name": "果酱", "type": "Crafted", "price": 120 }
+  ],
+  "tools": [
+    { "id": "tool_hoe", "name": "锄头", "type": "Tool", "toolType": "Hoe", "level": 0, "price": 0, "energy": 5 },
+    { "id": "tool_hoe_copper", "name": "铜锄头", "type": "Tool", "toolType": "Hoe", "level": 1, "price": 500, "energy": 4 },
+    { "id": "tool_wateringcan", "name": "水壶", "type": "Tool", "toolType": "WateringCan", "level": 0, "price": 0, "energy": 5 },
+    { "id": "tool_wateringcan_copper", "name": "铜水壶", "type": "Tool", "toolType": "WateringCan", "level": 1, "price": 500, "energy": 4 }
+  ]
+}

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://farm01"]
+
+[ext_resource type="Script" path="res://scripts/World/FarmTileManager.cs" id="1"]
+
+[node name="Farm" type="Node2D"]
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]
+
+[node name="FarmTileManager" type="Node" parent="."]
+script = ExtResource("1")

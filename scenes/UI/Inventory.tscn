@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://inv01"]
+[ext_resource type="Script" path="res://scripts/UI/InventoryUI.cs" id="1"]
+[node name="InventoryUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+[node name="TitleLabel" type="Label" parent="."]
+position = Vector2(300, 50)
+text = "背包"
+[node name="Grid" type="GridContainer" parent="."]
+position = Vector2(200, 100)
+columns = 6

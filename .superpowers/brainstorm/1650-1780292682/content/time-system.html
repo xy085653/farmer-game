@@ -1,0 +1,86 @@
+<h2>⏰ 二十四节气时间系统</h2>
+<p class="subtitle">融合中国传统文化的时间机制</p>
+
+<div class="section">
+  <h3>时间层次结构</h3>
+  <div style="background: #1a1a2e; border-radius: 12px; padding: 1.5rem; font-family: monospace; line-height: 2.2;">
+    <div style="color: #ff8c42;">年 (Year) ─── 四季轮回</div>
+    <div style="color: #888;">  ↓</div>
+    <div style="color: #66cdaa;">季 (Season) ── 春 / 夏 / 秋 / 冬</div>
+    <div style="color: #888;">  ↓</div>
+    <div style="color: #5c9bd5;">节气 (Solar Term) ── 每季 6 个节气，共 24 个</div>
+    <div style="color: #888;">  ↓</div>
+    <div style="color: #e8c86a;">天 (Day) ── 每个节气约 3 天游戏日</div>
+    <div style="color: #888;">  ↓</div>
+    <div style="color: #7cb342;">时段 (Time Slot) ── 晨 / 午 / 夕 / 夜</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🌿 二十四节气与四季</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+    <div style="background: #1a3a2a; border-radius: 10px; padding: 1rem; border: 1px solid #2d5a27;">
+      <h4 style="color: #7cb342;">🌸 春</h4>
+      <div style="font-size: 0.85rem; color: var(--muted);">立春 → 雨水 → 惊蛰 → 春分 → 清明 → 谷雨</div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">🌱 播种季，作物生长加速</div>
+    </div>
+    <div style="background: #3a2a1a; border-radius: 10px; padding: 1rem; border: 1px solid #8a6a2a;">
+      <h4 style="color: #e8c86a;">☀️ 夏</h4>
+      <div style="font-size: 0.85rem; color: var(--muted);">立夏 → 小满 → 芒种 → 夏至 → 小暑 → 大暑</div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">🌻 生长高峰，需浇水抗旱</div>
+    </div>
+    <div style="background: #2a1a1a; border-radius: 10px; padding: 1rem; border: 1px solid #8a3a3a;">
+      <h4 style="color: #ff8c42;">🍂 秋</h4>
+      <div style="font-size: 0.85rem; color: var(--muted);">立秋 → 处暑 → 白露 → 秋分 → 寒露 → 霜降</div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">🌾 丰收季，霜降后作物可能冻死</div>
+    </div>
+    <div style="background: #1a1a3a; border-radius: 10px; padding: 1rem; border: 1px solid #3a4a8a;">
+      <h4 style="color: #5c9bd5;">❄️ 冬</h4>
+      <div style="font-size: 0.85rem; color: var(--muted);">立冬 → 小雪 → 大雪 → 冬至 → 小寒 → 大寒</div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">🔥 休耕季，室内制作、节日活动</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🕐 一天的节奏</h3>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <div style="background: #ff8c42; color: #000; border-radius: 8px; padding: 0.5rem 1rem; font-weight: bold;">🌅 晨 (6:00-10:00)</div>
+    <div style="background: #e8c86a; color: #000; border-radius: 8px; padding: 0.5rem 1rem; font-weight: bold;">☀️ 午 (10:00-16:00)</div>
+    <div style="background: #d4756b; color: #000; border-radius: 8px; padding: 0.5rem 1rem; font-weight: bold;">🌆 夕 (16:00-20:00)</div>
+    <div style="background: #2a4a6a; color: #fff; border-radius: 8px; padding: 0.5rem 1rem; font-weight: bold;">🌙 夜 (20:00-6:00)</div>
+  </div>
+  <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">
+    每个时段约 2-3 分钟现实时间。夜晚体力恢复，部分商店关门。
+  </div>
+</div>
+
+<div class="section">
+  <h3>💻 代码设计要点</h3>
+  <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.85rem;">
+    <div style="color: #5c9bd5;">interface ITimeService {</div>
+    <div>  GameTime CurrentTime { get; }          // 当前时间</div>
+    <div>  SolarTerm CurrentTerm { get; }          // 当前节气</div>
+    <div>  event Action&lt;SolarTerm&gt; OnSolarTermChanged;  // 节气变化事件</div>
+    <div>  event Action&lt;DayPhase&gt; OnPhaseChanged;      // 时段变化事件</div>
+    <div>  event Action&lt;Season&gt; OnSeasonChanged;       // 换季事件</div>
+    <div>  void AdvanceToNextDay();                // 推进到第二天</div>
+    <div style="color: #5c9bd5;">}</div>
+    <div style="color: #888; margin-top: 0.5rem;">// 游戏时间数据对象</div>
+    <div style="color: #e8c86a;">struct GameTime {</div>
+    <div>  int Year; Season CurrentSeason;</div>
+    <div>  SolarTerm Term; int DayInTerm; // 1-3</div>
+    <div>  DayPhase Phase; float Minute;</div>
+    <div style="color: #e8c86a;">}</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 1.5rem; padding: 1rem; background: #1a2a1a; border-radius: 8px; border-left: 4px solid #7cb342;">
+  <strong>🌾 节气对游戏的影响：</strong>
+  <ul style="margin-top: 0.5rem;">
+    <li>每个节气有特定的"宜忌"作物——谷雨宜种水稻，白露宜收瓜果</li>
+    <li>节气当天有 buff/debuff——立春耕地不耗体力，大暑浇水需求减半</li>
+    <li>节气变换时触发事件（下雨、打雷、降温）</li>
+    <li>全年24节气循环，每节气3天 = 一年72天</li>
+  </ul>
+</div>

@@ -1,0 +1,8 @@
+{
+  "crops": [
+    { "id": "crop_rice", "name": "水稻", "seed": "seed_rice", "harvest": "product_rice", "growthDays": 8, "stages": 5, "preferredTerms": ["GuYu"], "seasons": ["Spring", "Summer"], "regrow": true, "regrowDays": 3 },
+    { "id": "crop_wheat", "name": "小麦", "seed": "seed_wheat", "harvest": "product_wheat", "growthDays": 6, "stages": 4, "preferredTerms": ["ChunFen"], "seasons": ["Spring", "Autumn"], "regrow": false, "regrowDays": 0 },
+    { "id": "crop_corn", "name": "玉米", "seed": "seed_corn", "harvest": "product_corn", "growthDays": 7, "stages": 4, "preferredTerms": ["MangZhong"], "seasons": ["Summer"], "regrow": false, "regrowDays": 0 },
+    { "id": "crop_tomato", "name": "番茄", "seed": "seed_tomato", "harvest": "product_tomato", "growthDays": 7, "stages": 5, "preferredTerms": ["LiXia"], "seasons": ["Summer", "Autumn"], "regrow": true, "regrowDays": 3 }
+  ]
+}

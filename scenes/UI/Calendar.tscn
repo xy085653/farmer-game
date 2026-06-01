@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cal01"]
+[ext_resource type="Script" path="res://scripts/UI/CalendarUI.cs" id="1"]
+[node name="CalendarUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+[node name="CurrentTermLabel" type="Label" parent="."]
+position = Vector2(300, 30)
+text = "当前节气"
+[node name="EffectLabel" type="Label" parent="."]
+position = Vector2(300, 60)
+[node name="TermGrid" type="GridContainer" parent="."]
+position = Vector2(100, 100)
+columns = 6
+[node name="CloseButton" type="Button" parent="."]
+position = Vector2(350, 500)
+text = "关闭"
