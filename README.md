@@ -74,11 +74,4 @@ res://
 - ⬜ **Phase 3** — 挖矿/战斗、更多节日事件
 - ⬜ **Phase 4** — 剧情线、成就系统
 
-## 📜 设计文档
-
-- [设计文档](docs/superpowers/specs/2026-06-01-stardew-farm-game-design.md)
-- [实施计划](docs/superpowers/plans/2026-06-01-stardew-farm-game-implementation.md)
-
----
-
 > 🌱 春耕夏耘，秋收冬藏 — 在像素世界中感受中国节气之美
