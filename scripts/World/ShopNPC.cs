@@ -1,4 +1,6 @@
 using Godot;
+using Demo.Data;
+using Demo.Core;
 
 namespace Demo.World;
 

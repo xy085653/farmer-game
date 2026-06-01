@@ -37,7 +37,7 @@ public partial class HUDController : Control
         if (TimeLabel != null)
             TimeLabel.Text = $"{SolarTermHelper.GetPhaseName(time.Phase)}";
         if (SeasonLabel != null)
-            SeasonLabel.Text = $"{SolarTermHelper.GetSeasonName(time.CurrentSeason)} 第{time.Year}年";
+            SeasonLabel.Text = $"{SolarTermHelper.GetSeasonName(time.Season)} 第{time.Year}年";
         if (TermLabel != null)
             TermLabel.Text = $"{SolarTermHelper.GetDisplayName(time.Term)} 第{time.DayInTerm}日";
         if (MoneyLabel != null && _registry.EconomyService != null)

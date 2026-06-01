@@ -45,7 +45,7 @@ public partial class ShopUI : Control
     private void OnBuyPressed()
     {
         var selected = ItemList?.GetSelectedItems();
-        if (selected == null || selected.Count == 0) return;
+        if (selected == null || selected.Length == 0) return;
         int idx = selected[0];
         if (idx < 0 || idx >= _currentStock.Count) return;
 

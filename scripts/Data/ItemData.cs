@@ -15,7 +15,7 @@ public partial class ItemData : Resource
     [Export] public ToolType ToolSubType { get; set; }
     [Export] public int BasePrice { get; set; }
     [Export] public int MaxStack { get; set; } = 99;
-    [Export] public Texture2D Icon { get; set; }
+    [Export] public Texture2D Icon { get; set; } = null;
     [Export] public int UpgradeLevel { get; set; }
     [Export] public int EnergyCost { get; set; }
 }

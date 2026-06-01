@@ -64,12 +64,8 @@ public partial class PlayerController : CharacterBody2D
     {
         // Raycast in facing direction to find interactable objects
         var spaceState = GetWorld2D().DirectSpaceState;
-        var query = new PhysicsRayQuery2D
-        {
-            From = GlobalPosition,
-            To = GlobalPosition + _facingDirection * 32,
-            CollisionMask = 2  // interactable layer
-        };
+        var query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + _facingDirection * 32);
+        query.CollisionMask = 2;  // interactable layer
         var result = spaceState.IntersectRay(query);
         if (result.Count > 0 && result["collider"].AsGodotObject() is Node node)
         {

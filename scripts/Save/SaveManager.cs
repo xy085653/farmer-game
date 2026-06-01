@@ -79,7 +79,7 @@ public partial class SaveManager : Node
             return null;
         }
 
-        var data = file.GetVar() as Godot.Collections.Dictionary;
+        var data = file.GetVar().AsGodotDictionary();
         file.Close();
 
         if (data == null)
