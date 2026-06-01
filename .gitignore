@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Design docs and brainstorming artifacts (local only)
+docs/
+.superpowers/
