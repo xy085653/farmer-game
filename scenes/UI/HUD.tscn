@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://hud01"]
-[ext_resource type="Script" path="res://scripts/UI/HUDController.cs" id="1"]
+[ext_resource type="Script" path="res://scripts/UI/hud_controller.gd" id="1"]
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

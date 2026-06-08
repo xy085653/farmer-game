@@ -17,13 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventBus="*res://scripts/Core/EventBus.cs"
-ServiceRegistry="*res://scripts/Core/ServiceRegistry.cs"
-GameManager="*res://scripts/Core/GameManager.cs"
-
-[dotnet]
-
-project/assembly_name="demo"
+EventBus="*res://scripts/Core/event_bus.gd"
+ServiceRegistry="*res://scripts/Core/service_registry.gd"
+GameManager="*res://scripts/Core/game_manager.gd"
 
 [input]
 
